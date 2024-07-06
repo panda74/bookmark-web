@@ -1,0 +1,9 @@
+/dist/*
+/html/*
+.local
+/node_modules/**
+**/.git
+**/.svn
+**/*.sh
+**/.hg
+/public/*
