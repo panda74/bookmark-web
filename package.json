@@ -13,7 +13,7 @@
 	},
 	"lint-staged": {
 		"src/**/*.{ts,tsx}": [
-			"pnpm lint",
+			"eslint . --ext ts,tsx --report-unused-disable-directives",
 			"prettier --write --ignore-unknown"
 		]
 	},

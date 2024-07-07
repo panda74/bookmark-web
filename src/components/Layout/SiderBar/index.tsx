@@ -20,10 +20,12 @@ import {
 import { Layout, Menu, Avatar, Space } from 'antd'
 import Github from '@/assets/github.svg?react'
 import type { NavItems } from '@/types/components/Layout'
+import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
 
 interface SiderBarProps {
 	collapsed: boolean
-	items: NavItems
 }
 interface MenuItem {
 	key: string
@@ -32,7 +34,8 @@ interface MenuItem {
 	children?: MenuItem[]
 }
 const { Sider } = Layout
-const SiderBar: React.FC<SiderBarProps> = ({ collapsed, items }) => {
+const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
+	const items = useSelector((state: RootState) => state.nav.items)
 	const commonIcon = <HomeFilled />
 	const defaultIcon = <BookFilled />
 	const icons = [
@@ -83,7 +86,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed, items }) => {
 			return transformedItem
 		})
 	}
-	const menuItems = transformItems(items, icons)
+	const menuItems = useMemo(() => transformItems(items, icons), [items])
 
 	return (
 		<Sider trigger={null} collapsible collapsed={collapsed}>
@@ -100,7 +103,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed, items }) => {
 					className='overflow-auto flex-1 py-2'
 					theme='dark'
 					mode='inline'
-					defaultSelectedKeys={['1']}
+					defaultSelectedKeys={['0']}
 					items={menuItems}
 				/>
 				<Space size={16} className='h-9 px-4 py-2'>
