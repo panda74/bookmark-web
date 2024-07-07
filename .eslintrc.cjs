@@ -6,7 +6,7 @@ module.exports = {
 		'plugin:@typescript-eslint/recommended',
 		'plugin:react-hooks/recommended',
 	],
-	ignorePatterns: ['dist', '.eslintrc.cjs', 'scritps/preinstall.js'],
+	ignorePatterns: ['dist', '.eslintrc.cjs', 'scripts/preinstall.js'],
 	parser: '@typescript-eslint/parser',
 	plugins: ['react-refresh'],
 	rules: {
@@ -15,5 +15,6 @@ module.exports = {
 		'no-var': 'error',
 		'no-multiple-empty-lines': ['warn', { max: 1 }],
 		'no-unexpected-multiline': 'error',
+		'no-extra-semi': 'off',
 	},
 }
