@@ -1,3 +1,9 @@
+import type { Bookmark } from '@/types/components/Upload'
+
+import { useMemo } from 'react'
+
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
 import {
 	BookFilled,
 	BulbFilled,
@@ -19,11 +25,6 @@ import {
 } from '@ant-design/icons'
 import { Layout, Menu, Avatar, Space } from 'antd'
 import Github from '@/assets/github.svg?react'
-import type { NavItems } from '@/types/components/Layout'
-import { useMemo } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/redux/store'
-
 interface SiderBarProps {
 	collapsed: boolean
 }
@@ -33,6 +34,7 @@ interface MenuItem {
 	label: string
 	children?: MenuItem[]
 }
+// type MenuItem = Required<MenuProps>['items'][number]
 const { Sider } = Layout
 const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
 	const items = useSelector((state: RootState) => state.nav.items)
@@ -56,7 +58,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
 		<CalendarFilled />,
 	]
 	const transformItems = (
-		items: NavItems,
+		items: Bookmark[],
 		icons: React.ReactNode[],
 		parentKey = '',
 		isTopLevel = true,
@@ -75,7 +77,7 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
 			const icon = isTopLevel ? (index === 0 ? commonIcon : getUniqueIcon()) : null
 			const transformedItem: MenuItem = {
 				key: key,
-				label: item.name,
+				label: item.title,
 				icon: icon,
 			}
 

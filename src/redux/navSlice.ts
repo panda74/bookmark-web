@@ -1,8 +1,8 @@
+import type { Bookmark } from '@/types/components/Upload'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { NavItems } from '@/types/components/Layout'
 
 export interface NavState {
-	items: NavItems
+	items: Bookmark[]
 }
 
 const initialState: NavState = {
@@ -13,7 +13,7 @@ const navSlice = createSlice({
 	name: 'nav',
 	initialState,
 	reducers: {
-		setItems(state, action: PayloadAction<NavItems>) {
+		setItems(state, action: PayloadAction<Bookmark[]>) {
 			state.items = action.payload
 		},
 	},
