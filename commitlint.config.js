@@ -81,7 +81,7 @@ export default {
 			{ value: 'revert', name: 'revert:   Reverts a previous commit', emoji: '⏪️' },
 		],
 		useEmoji: true,
-		emojiAlign: 'center',
+		emojiAlign: 'left',
 		useAI: false,
 		aiNumber: 1,
 		themeColorCode: '',
