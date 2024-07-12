@@ -25,6 +25,7 @@ import {
 } from '@ant-design/icons'
 import { Layout, Menu, Avatar, Space } from 'antd'
 import Github from '@/assets/github.svg?react'
+
 interface SiderBarProps {
 	collapsed: boolean
 }
@@ -57,6 +58,28 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
 		<FireFilled />,
 		<CalendarFilled />,
 	]
+	const filterBookmark = (items: Bookmark[], isTop = true) => {
+		const recursiveArr = items[0]?.personalToolbarFolder === 'true' ? items[0].children! : items
+		const bookmark: Bookmark[] = []
+		const hasMixedTypes =
+			recursiveArr.some(item => item.children) && recursiveArr.some(item => !item.children)
+		if (hasMixedTypes) {
+			bookmark.push({ title: isTop ? '常用' : '默认' })
+		}
+		for (const item of recursiveArr) {
+			if (item.children) {
+				bookmark.push({
+					title: item.title,
+					children: filterBookmark(item.children!, false).length
+						? filterBookmark(item.children!, false)
+						: undefined,
+				})
+			}
+		}
+
+		return bookmark
+	}
+
 	const transformItems = (
 		items: Bookmark[],
 		icons: React.ReactNode[],
@@ -88,8 +111,9 @@ const SiderBar: React.FC<SiderBarProps> = ({ collapsed }) => {
 			return transformedItem
 		})
 	}
-	const menuItems = useMemo(() => transformItems(items, icons), [items])
-
+	const bookmark = filterBookmark(items)
+	const menuItems = useMemo(() => transformItems(bookmark, icons), [items])
+	console.log(menuItems)
 	return (
 		<Sider trigger={null} collapsible collapsed={collapsed}>
 			<div className='h-full flex flex-col'>
