@@ -1,6 +1,7 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Button, Layout } from 'antd'
-import FileUpload from '@/components/FileUpload'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
+
+import FileUpload from '@/components/Upload/index.tsx'
 
 interface MainProps {
 	collapsed: boolean

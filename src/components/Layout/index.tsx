@@ -1,6 +1,8 @@
-import SiderBar from './SiderBar'
-import { Layout } from 'antd'
 import { useState } from 'react'
+
+import { Layout } from 'antd'
+
+import SiderBar from './SiderBar'
 import Main from './Main'
 
 const LayoutPage: React.FC = () => {
